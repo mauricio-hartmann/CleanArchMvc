@@ -23,7 +23,7 @@ namespace CleanArchMvc.Domain.Entities
             CategoryId = categoryId;
         }
 
-        public Product(int id, string name, string description, decimal price, int stock, string image)
+        public Product(int id, string name, string description, decimal price, int stock, string image, int categoryId)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value");
             Id = id;
@@ -33,6 +33,7 @@ namespace CleanArchMvc.Domain.Entities
             Price = price;
             Stock = stock;
             Image = image;
+            CategoryId = categoryId;
         }
 
         public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
