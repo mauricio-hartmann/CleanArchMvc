@@ -23,7 +23,7 @@ namespace CleanArchMvc.Domain.Entities
             CategoryId = categoryId;
         }
 
-        public Product(int id, string name, string description, decimal price, int stock, string image, int categoryId)
+        public Product(int id, string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value");
             Id = id;
@@ -33,7 +33,6 @@ namespace CleanArchMvc.Domain.Entities
             Price = price;
             Stock = stock;
             Image = image;
-            CategoryId = categoryId;
         }
 
         public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
@@ -55,7 +54,7 @@ namespace CleanArchMvc.Domain.Entities
             DomainExceptionValidation.When(description.Length < 5, "Invalid description. Too short, minimum 3 characteres");
             DomainExceptionValidation.When(price < 0, "Invalid price value");
             DomainExceptionValidation.When(stock < 0, "Invalid stock value");
-            DomainExceptionValidation.When(image.Length > 250, "Invalid image name. Too long, maximum 250 characteres");
+            DomainExceptionValidation.When(image?.Length > 250, "Invalid image name. Too long, maximum 250 characteres");
         }
 
     }
