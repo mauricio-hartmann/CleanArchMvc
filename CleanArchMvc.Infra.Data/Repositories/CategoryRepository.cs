@@ -16,7 +16,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
             _categoryContext = categoryContext;
         }
 
-        public async Task<Product> CreateAsync(Product category)
+        public async Task<Category> CreateAsync(Category category)
         {
             _categoryContext.Add(category);
             await _categoryContext.SaveChangesAsync();
