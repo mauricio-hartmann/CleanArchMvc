@@ -36,6 +36,16 @@ namespace CleanArchMvc.Domain.Entities
             CategoryId = categoryId;
         }
 
+        public Product(string name, string description, decimal price, int stock, string image)
+        {
+            ValidateDomain(name, description, price, stock, image);
+            Name = name;
+            Description = description;
+            Price = price;
+            Stock = stock;
+            Image = image;
+        }
+
         public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
         {
             ValidateDomain(name, description, price, stock, image);
