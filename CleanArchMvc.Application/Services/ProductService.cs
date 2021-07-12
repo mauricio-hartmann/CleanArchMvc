@@ -33,13 +33,6 @@ namespace CleanArchMvc.Application.Services
             return _mapper.Map<ProductDTO>(product);
         }
 
-        public async Task<ProductDTO> GetProductCategory(int? id)
-        {
-            var productByIdQuery = new GetProductByIdQuery(id.Value);
-            var product = await _mediator.Send(productByIdQuery);
-            return _mapper.Map<ProductDTO>(product);
-        }
-
         public async Task<IEnumerable<ProductDTO>> GetProducts()
         {
             var productsQuery = new GetProductsQuery();
