@@ -2,6 +2,7 @@ using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Threading.Tasks;
 
 namespace CleanArchMvc.WebUI.Controllers
@@ -38,6 +39,36 @@ namespace CleanArchMvc.WebUI.Controllers
             {
                 await _productService.Add(product);
                 return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+            var product = await _productService.GetById(id);
+            if (product == null)
+                return NotFound();
+            ViewBag.CategoryId = new SelectList(await _categoryService.GetCategories(), "Id", "Name");
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductDTO product)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _productService.Update(product);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
             return View(product);
         }
